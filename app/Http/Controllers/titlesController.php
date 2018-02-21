@@ -11,7 +11,7 @@ class titlesController extends Controller
     public function index()
     {
 
-      $titles = articles::all();
+      $titles = articles::latest()->get();
 
       return view('titles.index', compact('titles'));
     }
