@@ -17,3 +17,7 @@ Route::post('/posts','ArticleController@store');
 
 Route::resource('category', 'CategoryController');
 Route::resource('article','ArticleController');
+
+
+Route::get('/titles', 'titlesController@index');
+Route::get('/titles/{title}', 'titlesController@show');
