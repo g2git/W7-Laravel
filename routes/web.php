@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+$tasks = DB::table('tasks')->oldest()->get();
+
+    // return $tasks;
+    return view('welcome', compact('tasks'));
 });
+
+Route::resource('category', 'CategoryController');
+Route::resource('article','ArticleController');
