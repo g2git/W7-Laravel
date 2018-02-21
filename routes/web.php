@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-$tasks = DB::table('tasks')->oldest()->get();
-
-    // return $tasks;
-    return view('welcome', compact('tasks'));
+Route::get('/write', function () {
+    $items = DB::table('categories')->get();
+    return view('write', compact('items'));
 });
 
 Route::resource('category', 'CategoryController');
