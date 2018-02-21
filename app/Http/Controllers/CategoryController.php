@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-     //
+      
+         $items = Category::all();
+         return view('write', compact('items'));
+
     }
 
     /**

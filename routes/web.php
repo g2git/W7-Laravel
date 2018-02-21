@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/write', function () {
-    $items = DB::table('categories')->get();
-    return view('write', compact('items'));
-});
+Route::get('/write','CategoryController@index');
+Route::post('/posts','ArticleController@store');
+
 
 Route::resource('category', 'CategoryController');
 Route::resource('article','ArticleController');

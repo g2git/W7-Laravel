@@ -35,7 +35,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //var_dump of data from create post form
+        //dd(request()->all());
+        $post = new Article;
+      //Creata a new post using the request data
+        $post->article_title = $request->article_title;
+        $post->article_body = $request->article_body;
+        $post->category_id = $request->category_id;
+        $post->user_id = 1;
+
+        //Save it to DB
+        $post->save();
+
+        //And redirect
+        return redirect('/');
     }
 
     /**
