@@ -40,7 +40,7 @@ class ArticleController extends Controller
         $post = new Article;
       //Creata a new post using the request data
         $post->article_title = $request->article_title;
-        $post->article_body = $request->article_body;
+        $post->article = $request->article_body;
         $post->category_id = $request->category_id;
         $post->user_id = 1;
 
