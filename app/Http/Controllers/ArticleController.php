@@ -14,7 +14,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+
+            $titles = Article::latest()->get();
+
+            return view('titles.index', compact('titles'));
     }
 
     /**
@@ -35,6 +38,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+      //Form validation
+      $rules = [
+      'article_title' => 'required',
+      'article_body' => 'required',
+      'category_id' => 'required',
+    ];
+    $customMessages = [
+      'article_title.required' => 'A article title is required',
+      'article_body.required' => 'You forgot the article itself',
+      'category_id.required'  => 'Category is required',
+    ];
+    $this->validate($request, $rules, $customMessages);
       //var_dump of data from create post form
         //dd(request()->all());
         $post = new Article;
@@ -48,7 +63,7 @@ class ArticleController extends Controller
         $post->save();
 
         //And redirect
-        return redirect('/');
+        return redirect('/titles');
     }
 
     /**
@@ -57,9 +72,11 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+
+      $show_article= Article::find($id);
+      return view('titles.show', compact('show_article'));
     }
 
     /**

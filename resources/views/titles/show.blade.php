@@ -1,14 +1,61 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <p>{{$show_article -> user_id}}</p>
-    <p>{{$show_article -> category_id}}</p>
-    <p>{{$show_article -> created_at}}</p>
-    <p>{{$show_article -> article_title}}</p>
-    <div>{{$show_article -> article}}</div>
-  </body>
-</html>
+@extends ('layout')
+
+@section('content')
+
+          <div class="row">
+
+            <!-- Post Content Column -->
+            <div class="col-lg-8">
+
+              <!-- Title -->
+              <h1 class="mt-4">{{$show_article -> article_title}}</h1>
+
+              <!-- Author -->
+              <p class="lead">
+                by
+                <a href="#">{{$show_article -> user_id}}</a>
+              </p>
+
+              <hr>
+
+              <!-- Date/Time & Category -->
+              <p>Posted on {{$show_article -> created_at}}, Category : {{$show_article -> category_id}}</p>
+
+              <hr>
+
+              <!-- Preview Image -->
+              <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+              <hr>
+
+              <!-- Post Content/Body -->
+              <p class="lead">{{$show_article -> article}}</p>
+
+
+              <hr>
+
+              <!-- Comments Form -->
+              <div class="card my-4">
+                <h5 class="card-header">Leave a Comment:</h5>
+                <div class="card-body">
+                  <form>
+                    <div class="form-group">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Single Comment -->
+              <!-- <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                  <h5 class="mt-0">Commenter Name</h5>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </div> -->
+                </div>
+              </div>
+
+@endsection

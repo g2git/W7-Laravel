@@ -19,5 +19,5 @@ Route::resource('category', 'CategoryController');
 Route::resource('article','ArticleController');
 
 
-Route::get('/titles', 'titlesController@index');
-Route::get('/titles/{title}', 'titlesController@show');
+Route::get('/titles', 'ArticleController@index');
+Route::get('/titles/{title}', 'ArticleController@show');

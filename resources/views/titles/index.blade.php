@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <ul>
-      @foreach ($titles as $title)
-        <li>
-          <a href="/titles/{{$title->id}}">{{$title -> user_id}}: {{$title -> article_title}}</a>
-        </li>
+@extends ('layout')
+
+@section('content')
+
+<div id="blog" class="row">
+    @foreach ($titles as $title)
+                <div class="col-md-10 blogShort">
+                    <h1>{{$title -> article_title}}</h1>
+                    <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/guinnes-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+
+                    <article><p>
+                        {{$title -> article}}
+                        </p></article>
+                    <a class="btn btn-blog pull-right marginBottom10" href="/titles/{{$title->id}}">READ MORE</a>
+                </div>
+
       @endforeach
-  </ul>
-  </body>
-</html>
+      <div class="col-md-12 gap10"></div>
+      </div>
+@endsection
