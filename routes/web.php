@@ -21,3 +21,4 @@ Route::resource('article','ArticleController');
 
 Route::get('/titles', 'ArticleController@index');
 Route::get('/titles/{title}', 'ArticleController@show');
+Route::post('/titles', 'ArticleController@store2');
