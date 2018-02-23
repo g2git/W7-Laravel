@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+//Add category
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -15,9 +17,10 @@ class ArticleController extends Controller
     public function index()
     {
 
-            $titles = Article::latest()->get();
+      $titles = Article::latest()->get();
+      $items = Category::all();
 
-            return view('titles.index', compact('titles'));
+      return view('titles.index', compact('titles', 'items'));
     }
 
     /**
@@ -78,6 +81,21 @@ class ArticleController extends Controller
       $show_article= Article::find($id);
       $comments = \App\Comment::where('article_id',$id)->get();
       return view('titles.show', compact('show_article','comments'));
+    }
+
+    //Store 2
+    public function store2(Request $request)
+    {
+      $items = Category::all();
+      if ($request->has('filterAuthor'))
+      {
+      $titles = Article::where('user_id',request('filterbyAuthor'))->get();
+      return view('titles.index', compact('titles', 'items'));
+      }else
+        {
+          $titles = Article::where('category_id',request('filterbyCategory'))->get();
+          return view('titles.index', compact('titles', 'items'));
+        }
     }
 
     /**
