@@ -89,11 +89,11 @@ class ArticleController extends Controller
       $items = Category::all();
       if ($request->has('filterAuthor'))
       {
-      $titles = Article::where('user_id',request('filterbyAuthor'))->get();
+      $titles = Article::where('user_id',request('filterbyAuthor'))->latest()->get();
       return view('titles.index', compact('titles', 'items'));
       }else
         {
-          $titles = Article::where('category_id',request('filterbyCategory'))->get();
+          $titles = Article::where('category_id',request('filterbyCategory'))->latest()->get();
           return view('titles.index', compact('titles', 'items'));
         }
     }
