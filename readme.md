@@ -1,3 +1,8 @@
+Live version:https://calm-depths-13141.herokuapp.com/
+Trello: https://trello.com/b/97gCXVus/laravelgg
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
