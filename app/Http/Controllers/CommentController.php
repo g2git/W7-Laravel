@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,6 @@ class ArticleController extends Controller
     public function index()
     {
 
-            $titles = Article::latest()->get();
-
-            return view('titles.index', compact('titles'));
     }
 
     /**
@@ -40,53 +37,51 @@ class ArticleController extends Controller
     {
       //Form validation
       $rules = [
-      'article_title' => 'required',
-      'article_body' => 'required',
-      'category_id' => 'required',
+      'comment' => 'required|max:254',
     ];
     $customMessages = [
-      'article_title.required' => 'A article title is required',
-      'article_body.required' => 'You forgot the article itself',
-      'category_id.required'  => 'Category is required',
+      'comment.required' => 'This section is required',
     ];
     $this->validate($request, $rules, $customMessages);
       //var_dump of data from create post form
-        //dd(request()->all());
-        $post = new Article;
-      //Creata a new post using the request data
-        $post->article_title = $request->article_title;
-        $post->article = $request->article_body;
-        $post->category_id = $request->category_id;
-        $post->user_id = 1;
+        $post = new Comment;
 
+      //Creata a new post using the request data
+      if($request->has('anonymous')){
+       $post->user_id = 15; //user_id for anonymous
+     }else{
+       $post->user_id = 1;   //has to be user_id for current_user
+      }
+
+        $post->comment = $request->comment;
+        $post->article_id = $request->article_id;
+        
         //Save it to DB
         $post->save();
 
         //And redirect
         return redirect('/titles');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-
-      $show_article= Article::find($id);
-      $comments = \App\Comment::where('article_id',$id)->get();
-      return view('titles.show', compact('show_article','comments'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -95,10 +90,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -106,10 +101,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Comment $comment)
     {
         //
     }

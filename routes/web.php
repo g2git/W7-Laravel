@@ -13,11 +13,11 @@
 
 Route::get('/write','CategoryController@index');
 Route::post('/posts','ArticleController@store');
+Route::post('/comment','CommentController@store');
 
 
 Route::resource('category', 'CategoryController');
 Route::resource('article','ArticleController');
-
 
 Route::get('/titles', 'ArticleController@index');
 Route::get('/titles/{title}', 'ArticleController@show');
