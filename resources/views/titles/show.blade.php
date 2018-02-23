@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section('content')
-
+<a href="/titles">Go back</a>
           <div class="row">
 
             <!-- Post Content Column -->

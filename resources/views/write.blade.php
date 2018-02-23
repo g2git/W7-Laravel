@@ -2,7 +2,7 @@
 
 
 @section ('content')
-
+<a href="/">Go back</a>
 
     <div class="col-md-5">
         <div class="form-area">
