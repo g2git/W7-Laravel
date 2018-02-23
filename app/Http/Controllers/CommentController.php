@@ -55,12 +55,12 @@ class CommentController extends Controller
 
         $post->comment = $request->comment;
         $post->article_id = $request->article_id;
-        
+
         //Save it to DB
         $post->save();
 
-        //And redirect
-        return redirect('/titles');
+        //And redirect to same page with new comment
+        return redirect()->back()->with('data', ['article_id']);
 
     }
 

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Category;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -9,8 +11,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
-    }
+     public function run()
+        {
+            DB::table('categories')->insert([
+                'name' => str_random(10),
+            ]);
+        }
 }
