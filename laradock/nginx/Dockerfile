@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
