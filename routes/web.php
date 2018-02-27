@@ -24,3 +24,7 @@ Route::resource('article','ArticleController');
 Route::get('/titles', 'ArticleController@index');
 Route::get('/titles/{title}', 'ArticleController@show');
 Route::post('/titles', 'ArticleController@store2');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
