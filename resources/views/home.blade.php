@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Success</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <button type="button" href="{{ route('/welcome') }}" name="button">Go to homepage!</button>
                 </div>
             </div>
         </div>

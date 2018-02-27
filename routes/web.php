@@ -13,6 +13,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/excel', function(){
+    return view('excel');
+});
 Route::get('/write','CategoryController@index');
 Route::post('/posts','ArticleController@store');
 Route::post('/comment','CommentController@store');
