@@ -1,7 +1,6 @@
-@extends ('layout')
+@extends('layouts.app')
 
-
-@section ('content')
+@section('content')
 <a href="/">Go back</a>
 
     <div class="col-md-5">
