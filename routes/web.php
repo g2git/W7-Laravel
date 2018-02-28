@@ -31,3 +31,8 @@ Route::post('/titles', 'ArticleController@store2');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/subscribe', function () {
+    return view('/subscribe/index');
+});
+Route::post('/subscribe/index', 'SubscriptionController@store');
