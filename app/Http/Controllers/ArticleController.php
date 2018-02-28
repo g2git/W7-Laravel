@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-//Add category
+use App\User;
 use App\Category;
 use Illuminate\Http\Request;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -53,20 +54,31 @@ class ArticleController extends Controller
       'category_id.required'  => 'Category is required',
     ];
     $this->validate($request, $rules, $customMessages);
-      //var_dump of data from create post form
-        //dd(request()->all());
-        $post = new Article;
-      //Creata a new post using the request data
-        $post->article_title = $request->article_title;
-        $post->article = $request->article_body;
-        $post->category_id = $request->category_id;
-        $post->user_id = 1;
 
-        //Save it to DB
-        $post->save();
+        //Check Trial period
+        $id = Auth::id();
+        //check if user has membership plan
+        $membership = User::where('id', $id)->value('membership-plan');
 
-        //And redirect
-        return redirect('/titles');
+        if(Article::where('user_id', $id)->count() == 5 && !$membership){
+          //echo "<p>Please subscribe to continue posting articles</p>";
+          return redirect('/subscribe');
+        }
+
+          else
+          {
+            $post = new Article;
+          //Creata a new post using the request data
+            $post->article_title = $request->article_title;
+            $post->article = $request->article_body;
+            $post->category_id = $request->category_id;
+            $post->user_id = $id;
+            //Save it to DB
+            $post->save();
+
+            //And redirect
+            return redirect('/titles');
+      }
     }
 
     /**
