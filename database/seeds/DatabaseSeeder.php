@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Category;
+use App\Machtiging;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
      public function run()
         {
-            DB::table('categories')->insert([
-                'name' => str_random(10),
-            ]);
+             $this->call(UserTableSeeder::class);
         }
 }

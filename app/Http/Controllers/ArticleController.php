@@ -49,7 +49,7 @@ class ArticleController extends Controller
       'category_id' => 'required',
     ];
     $customMessages = [
-      'article_title.required' => 'A article title is required',
+      'article_title.required' => 'An article title is required',
       'article_body.required' => 'You forgot the article itself',
       'category_id.required'  => 'Category is required',
     ];

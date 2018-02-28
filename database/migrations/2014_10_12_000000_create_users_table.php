@@ -19,9 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->string('iban')->nullable();
-            $table->string('bank')->nullable();
-            $table->string('membership-plan')->nullable();
             $table->timestamps();
         });
     }

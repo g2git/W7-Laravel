@@ -15,7 +15,7 @@
                     @endif
 
                     You are logged in!
-                    <button type="button" href="{{ route('/welcome') }}" name="button">Go to homepage!</button>
+                    <button type="button" href="{{ view('/welcome') }}" name="button">Go to homepage!</button>
                 </div>
             </div>
         </div>
