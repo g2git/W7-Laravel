@@ -4,18 +4,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Subscribe</div>
+                <div class="card-header">Subscribe via CreditCard</div>
 
                 <div class="card-body">
 
-                    <form method="POST" action="/subscribe/index">
+                    <form method="POST" action="/subscribe/creditcard">
                         {{ csrf_field() }}    <!--Laravel token check is mandatory for every form in laravel -->
 
                        <!-- IBAN input -->
-                      <div class="form-group{{ $errors->has('iban') ? ' has-error' : '' }}">
-                        IBAN
-                        <input type="text" class="form-control" name="iban" placeholder="NL91ABNA0417164300">
-                        <small class="text-danger">{{ $errors->first('iban') }}</small>
+                      <div class="form-group{{ $errors->has('creditcard') ? ' has-error' : '' }}">
+                        CreditCard
+                        <input type="text" class="form-control" name="creditcard" placeholder="4111 1111 1111 1111">
+                        <small class="text-danger">{{ $errors->first('creditcard') }}</small>
                       </div>
 
                       <!-- Fullname input -->

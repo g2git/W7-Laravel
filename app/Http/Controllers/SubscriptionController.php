@@ -16,9 +16,15 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      if($request->paymentCheck =='iban'){
+        return redirect('subscribe/iban');
+      }else{
+        return redirect('subscribe/creditcard');
+      }
+
+
     }
 
     /**
@@ -40,15 +46,6 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         //
-        $id = Auth::id();
-        User::where('id', $id)
-        ->update([
-        'iban' => request('iban'),
-        'bank' => request('bankname'),
-        'membership-plan' => request('chosen_plan')
-        ]);
-
-      return redirect('/titles');
     }
 
     /**
