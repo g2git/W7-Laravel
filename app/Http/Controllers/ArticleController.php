@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\User;
+use App\Machtiging;
 use App\Category;
 use Illuminate\Http\Request;
 use Auth;
@@ -58,7 +58,7 @@ class ArticleController extends Controller
         //Check Trial period
         $id = Auth::id();
         //check if user has membership plan
-        $membership = User::where('id', $id)->value('membership-plan');
+        $membership = Machtiging::where('user_id', $id)->value('membership_plan');
 
         if(Article::where('user_id', $id)->count() == 5 && !$membership){
           //echo "<p>Please subscribe to continue posting articles</p>";

@@ -11,6 +11,13 @@
                     <form method="POST" action="/subscribe/index">
                         {{ csrf_field() }}    <!--Laravel token check is mandatory for every form in laravel -->
 
+
+                      <!-- Membership-plan input -->
+                      <div class="form-group">
+                        9.99EUR Eenmalige betaling
+                      <input type="radio" name="membershiplan" value="iban" checked>
+                      </div>
+
                        <!-- IBAN input -->
                       <div class="form-group">
                         IBAN
