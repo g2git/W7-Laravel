@@ -38,3 +38,9 @@ Route::get('/subscribe', function () {
     return view('/subscribe/index');
 });
 Route::post('/subscribe/index', 'MachtigingController@store');
+
+Route::get('/querytest', function () {
+    return view('/querytest/index');
+});
+
+Route::post('/querytest/index', 'QuerytestController@store');
