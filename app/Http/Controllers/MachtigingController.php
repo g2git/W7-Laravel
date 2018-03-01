@@ -41,19 +41,48 @@ class MachtigingController extends Controller
       $rules = [
       'iban' => 'iban',
       'fullname' => 'required',
-    ];
+      ];
+
     $customMessages = [
-      'iban.required' => 'Please fill your IBAN in',
       'fullname.required' => 'Please fill in your name',
     ];
     $this->validate($request, $rules, $customMessages);
 
     $id = Auth::id();
       $post = new Machtiging;
+
       $post->iban = $request->iban;
       $post->fullname = $request->fullname;
       $post->user_id = $id;
       $post->creditcard = 0;
+      $post->membership_plan = "9.99EUR Eenmalige betaling";
+
+      $post->save();
+
+      //And redirect
+      return redirect('/welcome')->with('messageSubscribe', 'Subscribing Complete!');
+;
+    }
+    public function store2(Request $request)
+    {
+      //Form validation
+      $rules = [
+      'creditcard' => 'creditcard',
+      'fullname' => 'required',
+      ];
+
+    $customMessages = [
+      'fullname.required' => 'Please fill in your name',
+    ];
+    $this->validate($request, $rules, $customMessages);
+
+    $id = Auth::id();
+      $post = new Machtiging;
+
+      $post->iban = 0;
+      $post->fullname = $request->fullname;
+      $post->user_id = $id;
+      $post->creditcard = $request->creditcard;
       $post->membership_plan = "9.99EUR Eenmalige betaling";
 
       $post->save();
@@ -107,4 +136,28 @@ class MachtigingController extends Controller
     {
         //
     }
+    /**
+     *  Function for email sending
+     *
+     */
+     public function sendmail(Request $request) {
+
+        $email = DB::table('users')->select('email')->get();
+
+        $title = $request['title'];
+        $content = $request['content'];
+
+
+        foreach($email as $email) {
+           Mail::send('email', ['title' => $title, 'content' =>   $content],function ($message)
+             {
+             $message->from('dhivya@authorselvi.com', 'dhivya');
+             $message->to($email->email);
+             $message->subject("Hello");
+
+             });
+        }
+
+     return response()->json(['message' => 'message send successfully']);
+}
 }

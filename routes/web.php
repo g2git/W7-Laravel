@@ -16,10 +16,18 @@ Route::get('/', function () {
 Route::get('/welcome', function(){
   return view('welcome');
 });
+Route::get('subscribe/iban', function(){
+  return view('subscribe/iban');
+});
+Route::get('subscribe/creditcard', function(){
+  return view('subscribe/creditcard');
+});
 
 Route::get('/write','CategoryController@index');
 Route::post('/posts','ArticleController@store');
 Route::post('/comment','CommentController@store');
+Route::post('subscribe/iban','MachtigingController@store');
+Route::post('subscribe/creditcard','MachtigingController@store2');
 Route::get('/excel','MachtigingController@index');
 
 
@@ -35,9 +43,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/subscribe', function () {
-    return view('/subscribe/index');
+    return view('/subscribe/pre_subscribe');
 });
-Route::post('/subscribe/index', 'MachtigingController@store');
+Route::post('/subscribe/index', 'SubscriptionController@index');
 
 Route::get('/querytest', function () {
     return view('/querytest/index');
