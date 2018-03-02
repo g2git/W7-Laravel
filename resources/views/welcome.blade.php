@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-Welkom     <br>
- <ul>
-<li><a href="write">Write article</a></li>
-<li><a href="titles">Read articles</a></li>  
-</ul>
+@extends('layouts.app')
 
-  </body>
-</html>
+@section('content')
+@if(session()->has('messageSubscribe'))
+    <div class="alert alert-success">
+        {{ session()->get('messageSubscribe') }}
+    </div>
+@endif
+{{ __('messages.welcome') }}     <br>
+ <ul>
+<li><a href="write">{{ __('messages.write_article') }}</a></li>
+<li><a href="titles">{{ __('messages.read_articles') }}</a></li>
+<li><a href="subscribe/">{{ __('messages.subscribe') }}</a></li>
+</ul>
+@endsection

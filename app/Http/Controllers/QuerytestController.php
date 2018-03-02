@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Querytest;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class QuerytestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -35,42 +35,41 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-      //Form validation
-      $rules = [
-      'comment' => 'required|max:254',
-    ];
-    $customMessages = [
-      'comment.required' => __('messages.section_required'),
-    ];
-    $this->validate($request, $rules, $customMessages);
-      //var_dump of data from create post form
-        $post = new Comment;
+        //
+        //Form validation
+        $rules = [
+        'query' => 'required'
+      ];
+      $customMessages = [
+        'query.required' => __('messages.query_required')
+      ];
+        $this->validate($request, $rules, $customMessages);
 
+        $post = new Querytest;
       //Creata a new post using the request data
-      if($request->has('anonymous')){
-       $post->user_id = 15; //user_id for anonymous
-     }else{
-       $post->user_id = 1;   //has to be user_id for current_user
-      }
 
-        $post->comment = $request->comment;
-        $post->article_id = $request->article_id;
+        $post->body = $request->input('query');
 
-        //Save it to DB
-        $post->save();
 
-        //And redirect to same page with new comment
-        return redirect()->back()->with('data', ['article_id']);
+        try {
+            //Save it to DB
+            $outcome = $post->save();
+            $result = __('messages.injection_unsuccesfull');
+        } catch(\Illuminate\Database\QueryException $err){
+          $result = $err->getMessage();
+        }
+
+        return view('querytest.index',compact('result'));
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Querytest  $querytest
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Querytest $querytest)
     {
         //
     }
@@ -78,10 +77,10 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Querytest  $querytest
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Querytest $querytest)
     {
         //
     }
@@ -90,10 +89,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
+     * @param  \App\Querytest  $querytest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Querytest $querytest)
     {
         //
     }
@@ -101,10 +100,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Querytest  $querytest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Querytest $querytest)
     {
         //
     }

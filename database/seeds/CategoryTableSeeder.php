@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use App\Category;
 
-class UserTableSeeder extends Seeder
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +14,8 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 10; $i++) {
-          \App\Category::create([
-            'name' => $faker->name
-          ]);
+        for ($i=0; $i < 5 ; $i++) {
+          App\Category::create(['name' => $faker->word]);
         }
     }
 }

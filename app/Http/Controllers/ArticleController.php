@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-//Add category
+use App\Machtiging;
 use App\Category;
 use Illuminate\Http\Request;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -48,25 +49,36 @@ class ArticleController extends Controller
       'category_id' => 'required',
     ];
     $customMessages = [
-      'article_title.required' => 'A article title is required',
-      'article_body.required' => 'You forgot the article itself',
-      'category_id.required'  => 'Category is required',
+      'article_title.required' => __('messages.article_title_required'),
+      'article_body.required' => __('messages.article_body_required'),
+      'category_id.required'  => __('messages.category_id_required'),
     ];
     $this->validate($request, $rules, $customMessages);
-      //var_dump of data from create post form
-        //dd(request()->all());
-        $post = new Article;
-      //Creata a new post using the request data
-        $post->article_title = $request->article_title;
-        $post->article = $request->article_body;
-        $post->category_id = $request->category_id;
-        $post->user_id = 1;
 
-        //Save it to DB
-        $post->save();
+        //Check Trial period
+        $id = Auth::id();
+        //check if user has membership plan
+        $membership = Machtiging::where('user_id', $id)->value('membership_plan');
 
-        //And redirect
-        return redirect('/titles');
+        if(Article::where('user_id', $id)->count() == 5 && !$membership){
+          //echo "<p>Please subscribe to continue posting articles</p>";
+          return redirect('/subscribe');
+        }
+
+          else
+          {
+            $post = new Article;
+          //Creata a new post using the request data
+            $post->article_title = $request->article_title;
+            $post->article = $request->article_body;
+            $post->category_id = $request->category_id;
+            $post->user_id = $id;
+            //Save it to DB
+            $post->save();
+
+            //And redirect
+            return redirect('/titles');
+      }
     }
 
     /**
