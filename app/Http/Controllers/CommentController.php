@@ -40,7 +40,7 @@ class CommentController extends Controller
       'comment' => 'required|max:254',
     ];
     $customMessages = [
-      'comment.required' => 'This section is required',
+      'comment.required' => __('messages.section_required'),
     ];
     $this->validate($request, $rules, $customMessages);
       //var_dump of data from create post form

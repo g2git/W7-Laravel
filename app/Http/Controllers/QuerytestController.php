@@ -41,7 +41,7 @@ class QuerytestController extends Controller
         'query' => 'required'
       ];
       $customMessages = [
-        'query.required' => 'A query is required'
+        'query.required' => __('messages.query_required')
       ];
         $this->validate($request, $rules, $customMessages);
 
@@ -54,7 +54,7 @@ class QuerytestController extends Controller
         try {
             //Save it to DB
             $outcome = $post->save();
-            $result = "Injection unsuccesful!";
+            $result = __('messages.injection_unsuccesfull');
         } catch(\Illuminate\Database\QueryException $err){
           $result = $err->getMessage();
         }

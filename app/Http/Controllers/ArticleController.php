@@ -49,9 +49,9 @@ class ArticleController extends Controller
       'category_id' => 'required',
     ];
     $customMessages = [
-      'article_title.required' => 'An article title is required',
-      'article_body.required' => 'You forgot the article itself',
-      'category_id.required'  => 'Category is required',
+      'article_title.required' => __('messages.article_title_required'),
+      'article_body.required' => __('messages.article_body_required'),
+      'category_id.required'  => __('messages.category_id_required'),
     ];
     $this->validate($request, $rules, $customMessages);
 

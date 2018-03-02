@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/titles">Go back</a>
+<a href="/titles">@lang('messages.go_back')</a>
           <div class="row">
 
             <!-- Post Content Column -->
@@ -19,7 +19,7 @@
               <hr>
 
               <!-- Date/Time & Category -->
-              <p>Posted on {{$show_article -> created_at}}, Category : {{$show_article -> category_id}}</p>
+              <p>@lang('messages.posted_on') {{$show_article -> created_at}}, @lang('messages.category') : {{$show_article -> category_id}}</p>
 
               <hr>
 
@@ -36,16 +36,16 @@
 
               <!-- Comments Form -->
               <div class="card my-4">
-                <h5 class="card-header">Leave a Comment:</h5>
+                <h5 class="card-header">@lang('messages.leave_comment')</h5>
                 <div class="card-body">
                   <form method="post" action="/comment">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <input type="hidden" name="article_id" value="{{$show_article -> id}}">
-                      <input type="checkbox" name="anonymous">Anonymous Post
+                      <input type="checkbox" name="anonymous">@lang('messages.anonymous_post')
                       <textarea name="comment" class="form-control" rows="3"></textarea>
                     </div>
-                    <button type="submit" name="submitComment" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submitComment" class="btn btn-primary">@lang('messages.submit')</button>
                   </form>
                 </div>
               </div>

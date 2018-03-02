@@ -6,10 +6,10 @@
         {{ session()->get('messageSubscribe') }}
     </div>
 @endif
-Welkom     <br>
+{{ __('messages.welcome') }}     <br>
  <ul>
-<li><a href="write">Write article</a></li>
-<li><a href="titles">Read articles</a></li>
-<li><a href="subscribe/">Subscribe</a></li>
+<li><a href="write">{{ __('messages.write_article') }}</a></li>
+<li><a href="titles">{{ __('messages.read_articles') }}</a></li>
+<li><a href="subscribe/">{{ __('messages.subscribe') }}</a></li>
 </ul>
 @endsection

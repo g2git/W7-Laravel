@@ -44,7 +44,7 @@ class MachtigingController extends Controller
       ];
 
     $customMessages = [
-      'fullname.required' => 'Please fill in your name',
+      'fullname.required' => __('messages.fill_name'),
     ];
     $this->validate($request, $rules, $customMessages);
 
@@ -55,12 +55,12 @@ class MachtigingController extends Controller
       $post->fullname = $request->fullname;
       $post->user_id = $id;
       $post->creditcard = 0;
-      $post->membership_plan = "9.99EUR Eenmalige betaling";
+      $post->membership_plan = __('messages.one_time_fee');
 
       $post->save();
 
       //And redirect
-      return redirect('/welcome')->with('messageSubscribe', 'Subscribing Complete!');
+      return redirect('/welcome')->with('messageSubscribe', __('messages.finished_subscribing'));
 ;
     }
     public function store2(Request $request)
@@ -72,7 +72,7 @@ class MachtigingController extends Controller
       ];
 
     $customMessages = [
-      'fullname.required' => 'Please fill in your name',
+      'fullname.required' => __('messages.fill_name'),
     ];
     $this->validate($request, $rules, $customMessages);
 
@@ -83,12 +83,12 @@ class MachtigingController extends Controller
       $post->fullname = $request->fullname;
       $post->user_id = $id;
       $post->creditcard = $request->creditcard;
-      $post->membership_plan = "9.99EUR Eenmalige betaling";
+      $post->membership_plan = __('messages.one_time_fee');
 
       $post->save();
 
       //And redirect
-      return redirect('/welcome')->with('messageSubscribe', 'Subscribing Complete!');
+      return redirect('/welcome')->with('messageSubscribe', __('messages.finished_subscribing'));
 ;
     }
 
@@ -158,6 +158,6 @@ class MachtigingController extends Controller
              });
         }
 
-     return response()->json(['message' => 'message send successfully']);
+     return response()->json(['message' => __('messages.message_sent')]);
 }
 }
